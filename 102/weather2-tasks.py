@@ -19,7 +19,7 @@ def save_weather(temp: float):
     return "Successfully wrote temp"
 
 @flow(retries=3, log_prints=True)
-def pipeline(lat: float = 30, lon: float = 35):
+def pipeline(lat: float = 35, lon: float = 40):
     # raise Exception("This is a test exception")
     temp = fetch_weather(lat, lon)
     result = save_weather(temp)
