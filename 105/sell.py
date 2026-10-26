@@ -14,5 +14,6 @@ if __name__ == "__main__":
     ).deploy(
         name="selling-deployment",
         # work_pool_name="managed1",
+        # name="my-first-managed-deployment",
         work_pool_name="pool01",
     )

@@ -20,6 +20,7 @@ if __name__ == "__main__":
     ).deploy(
         name="ticker-deploy",
         # work_pool_name="managed1",
+        # name="my-first-managed-deployment",
         work_pool_name="pool01",
         triggers=[downstream_deployment_trigger],
     )
