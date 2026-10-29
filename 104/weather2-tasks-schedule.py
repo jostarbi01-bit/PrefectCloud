@@ -28,6 +28,7 @@ def pipeline_fetch_weather(lat: float = 13.7563, lon: float = 100.5018):
     # print(result)
     return temp
 
+##   is run hybrid local and  prefect cloud 
 if __name__ == "__main__":          
 
     Bangkok_schedule=IntervalSchedule(
