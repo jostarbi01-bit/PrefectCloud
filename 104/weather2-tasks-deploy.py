@@ -2,6 +2,7 @@ import httpx
 from prefect import  flow, task
 from datetime import timedelta
 from prefect.client.schemas.schedules    import IntervalSchedule
+from prefect.schedules import Cron 
 
 @task(retries=2 ,retry_delay_seconds=5, log_prints=True)
 def task_fetch_weather(lat: float, lon: float):
@@ -28,12 +29,16 @@ def pipeline_fetch_weather(lat: float = 13.7563, lon: float = 100.5018):
     # print(result)
     return temp
 
-if __name__ == "__main__":          
-
+if __name__ == "__main__":        
+      
     flow.from_source(
             source="https://github.com/jostarbi01-bit/PrefectCloud.git",
             entrypoint="104/weather2-tasks-schedule.py:pipeline_fetch_weather",
         ).deploy(
             name="deploy-fetch-weather-scheduled",        
             work_pool_name="pool01",
+            schedule=Cron(
+                "0 6 * * *",        # Runs everyday 6.00 am (e.g., 06:00, 14:30)
+                timezone="Asia/Bangkok"    # Forces Bangkok/Thailand local time
+            )           
         )
